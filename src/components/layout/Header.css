@@ -1,0 +1,17 @@
+#header {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 3.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
+}
+
+#header button {
+    border: none;
+    background: transparent;
+}
