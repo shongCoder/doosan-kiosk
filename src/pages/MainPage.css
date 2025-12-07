@@ -1,0 +1,83 @@
+#wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/img/main-back.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#wrapper .prod-mov {
+    width: 67.5rem;
+    height: 67.5rem;
+}
+
+#wrapper .touch-here {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 5rem;
+
+    animation: float-touch 4s ease-in-out infinite;
+}
+
+@keyframes float-touch {
+    /* ⭐ 시작: 아래 위치 + 2초 정지 */
+    0% {
+        opacity: 0.6;
+        transform: translateX(-50%) translateY(20px);
+    }
+    20% {
+        opacity: 0.6;
+        transform: translateX(-50%) translateY(20px);
+    }
+
+    /* ⭐ 위로 이동 */
+    35% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-20px);
+    }
+
+    /* ⭐ 위에서 2초 정지 */
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-20px);
+    }
+
+    /* ⭐ 아래로 이동 */
+    65% {
+        opacity: 0.6;
+        transform: translateX(-50%) translateY(20px);
+    }
+
+    /* ⭐ 아래에서 2초 정지 */
+    100% {
+        opacity: 0.6;
+        transform: translateX(-50%) translateY(20px);
+    }
+}
+#wrapper .touch-here button {
+    border-radius: 3.375rem;
+    padding: 1.25rem;
+    background-color: transparent;
+    backdrop-filter: blur(2px);
+    box-shadow:
+            -0.5px -0.5px 0px 0px rgba(255, 255, 255, 0.24) inset,
+            0.6px 0.6px 1px 0px rgba(255, 255, 255, 0.12) inset,
+            0.5px  0.5px 0px 0px rgba(255, 255, 255, 0.12) inset
+}
+
+#wrapper .touch-here span {
+    color: #F3F7FD;
+    font-size: 2rem;
+    line-height: 2.75rem;
+    font-weight: 700;
+}
