@@ -52,5 +52,11 @@
     font-weight: 300;
     line-height: 2.75rem;
     text-align: center;
-    color: #F3F7FD;
+    background: linear-gradient(90deg, #F3F7FD 0%, #919397 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#overview-wrap .contents .bottom-logo {
+    opacity: 68%;
 }

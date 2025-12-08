@@ -3,7 +3,7 @@ import "./Header.css"
 import Logo from "/doosan-logo.svg"
 import BackBtn from "/img/header/back-btn.svg"
 
-function Header({ isBack, onBackClick }) {
+function Header({ title, isBack, onBackClick }) {
     return (
         <>
             <div id="header">
@@ -14,7 +14,9 @@ function Header({ isBack, onBackClick }) {
                     </button>
                 ) : (<div></div>)}
 
-                <img src={Logo} />
+                {title === "" ?
+                    (<img src={Logo} />) : (<h2 className="header-title">{title}</h2>)}
+
 
                 <div></div>
             </div>

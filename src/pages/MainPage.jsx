@@ -6,9 +6,11 @@ import LinkBtn from "/img/main/link-btn.svg"
 import Header from "../components/layout/Header";
 import VideoComponent from "../components/modals/VideoComponent";
 import OverviewComponent from "../components/modals/OverviewComponent";
+import MajorFeaturesComponent from "../components/modals/MajorFeaturesComponent";
 
 function MainPage() {
     const [isBack, setIsBack] = useState(false);
+    const [headerTitle, setHeaderTitle] = useState("");
 
     const [isOpenInfo, setIsOpenInfo] = useState(false);
     const [activeNav, setActiveNav] = useState(0);
@@ -16,8 +18,10 @@ function MainPage() {
 
     const navItem1Ref = useRef(null);
     const navItem2Ref = useRef(null);
+    const navItem3Ref = useRef(null);
     const [isOpenVideo, setIsOpenVideo] = useState(false);
     const [isOpenOverview, setIsOpenOverview] = useState(false);
+    const [isOpenFeature, setIsOpenFeature] = useState(false);
 
     useEffect(() => {
         if (isOpenInfo) {
@@ -28,11 +32,13 @@ function MainPage() {
     return (
         <>
             <div id="wrapper">
-                <Header isBack={isBack} onBackClick={() => {
+                <Header title={headerTitle} isBack={isBack} onBackClick={() => {
                     setIsBack(false);
                     setIsOpenVideo(false);
                     setIsOpenOverview(false);
+                    setIsOpenFeature(false);
                     setActiveNav(0);
+                    setHeaderTitle("");
                 }} />
                 <video className="prod-vedio" muted autoPlay loop>
                     <source src={ProductRoop} type="video/webm" />
@@ -126,8 +132,22 @@ function MainPage() {
                                 </li>
 
                                 <li
+                                    ref={navItem3Ref}
                                     className={activeNav === 3 ? "active" : ""}
-                                    onClick={() => setActiveNav(3)}
+                                    onClick={() => {
+                                        setActiveNav(3);
+                                        setIsBack(true);
+                                        setHeaderTitle("Major Features");
+                                        const el = navItem3Ref.current;
+                                        if (el) {
+                                            el.addEventListener(
+                                                "transitionend",
+                                                () => setIsOpenFeature(true),
+                                                { once: true }
+                                            );
+                                        }
+
+                                    }}
                                 >
                                     <div className="nav-title">
                                         Major<br />
@@ -142,8 +162,9 @@ function MainPage() {
                         {/* Navigation Buttons End */}
                     </>
                 )}
-                <VideoComponent isOpen={isOpenVideo}/>
-                <OverviewComponent isOpen={isOpenOverview}/>
+                <VideoComponent isOpen={isOpenVideo} />
+                <OverviewComponent isOpen={isOpenOverview} />
+                <MajorFeaturesComponent isOpen={isOpenFeature} />
             </div>
         </>
     );

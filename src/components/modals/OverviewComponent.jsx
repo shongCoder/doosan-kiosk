@@ -43,7 +43,7 @@ function OverviewComponent({isOpen}) {
                             providing eco-friendly power generation<br />
                             and mobility solutions based on hydrogen.<br />
                             Building your tomorrow today !</p>
-                        <img src={Logo} alt="DOOSAN Mobility Innovation" />
+                        <img className="bottom-logo" src={Logo} alt="DOOSAN Mobility Innovation" />
                     </div>
                     <div className="overlay"></div>
                 </div>
