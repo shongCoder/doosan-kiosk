@@ -6,7 +6,6 @@
     top: 0;
     left: 0;
     z-index: 100;
-    background: url("/img/overview/overview-back.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
