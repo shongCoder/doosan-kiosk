@@ -9,7 +9,7 @@ function Header({isBack}) {
             <div id="header">
                 {/* 필요할 때만 버튼 노출 */}
                 {isBack ? (
-                    <button>
+                    <button style={{ marginRight: "-4.25rem" }}>
                         <img src={BackBtn} />
                     </button>
                 ) : (<div></div>)}

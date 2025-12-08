@@ -8,7 +8,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 11.25rem;
     box-sizing: border-box;
 }
 
@@ -76,6 +75,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 11.25rem;
 }
 
 #wrapper #prod-info .title {
@@ -175,8 +175,17 @@
             linear-gradient(0deg, rgba(204, 223, 241, 0.08), rgba(204, 223, 241, 0.08)),
             linear-gradient(107.56deg, rgba(0, 147, 184, 0.04) 0%, rgba(0, 94, 184, 0.12) 69.71%, rgba(0, 94, 184, 0) 100%);
     transform: translateY(-1.5rem);
-    transition: transform 0.25s ease;
+    transition: transform 0.45s ease;
+    transition-delay: 0.15s;
+    animation: preBounce 0.15s ease-out;
 }
+
+@keyframes preBounce {
+    0%   { margin-bottom: 0; }
+    50%  { margin-bottom: -0.5rem; }  /* 아래로 쏙 눌림 */
+    100% { margin-bottom: 0; }
+}
+
 
 #wrapper #nav ul li .nav-title {
     height: 7.5rem;

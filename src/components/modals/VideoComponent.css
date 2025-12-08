@@ -1,0 +1,25 @@
+#video-wrap {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+#video-wrap .video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+#video-wrap .overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+            linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 40%),
+            linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 40%);
+    z-index: 2;
+}

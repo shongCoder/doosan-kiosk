@@ -1,14 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './MainPage.css'
 import ProductRoop from "/img/main/product.webm"
 import ArrowTopBtn from "/img/main/top-arrow-button.svg"
 import LinkBtn from "/img/main/link-btn.svg"
 import Header from "../components/layout/Header";
+import VideoComponent from "../components/modals/VideoComponent";
 
 function MainPage() {
+    const [isBack, setIsBack] = useState(false);
+
     const [isOpenInfo, setIsOpenInfo] = useState(false);
     const [activeNav, setActiveNav] = useState(0);
-    const [startAnim, setStartAnim] = useState(false);
+    const [startAnim, setStartAnim] = useState(false); // 애니메이션
+
+    const navItem1Ref = useRef(null);
+    const [isOpenVideo, setIsOpenVideo] = useState(false);
 
     useEffect(() => {
         if (isOpenInfo) {
@@ -19,7 +25,7 @@ function MainPage() {
     return (
         <>
             <div id="wrapper">
-                <Header />
+                <Header isBack={isBack} />
                 <video className="prod-vedio" muted autoPlay loop>
                     <source src={ProductRoop} type="video/webm" />
                 </video>
@@ -58,8 +64,21 @@ function MainPage() {
                         <div id="nav" className={`fade-bounce-up ${startAnim ? "show" : ""}`}>
                             <ul>
                                 <li
+                                    ref={navItem1Ref}
                                     className={activeNav === 1 ? "active" : ""}
-                                    onClick={() => setActiveNav(1)}
+                                    onClick={() => {
+                                        setActiveNav(1);
+                                        setIsBack(true);
+                                        const el = navItem1Ref.current;
+                                        if (el) {
+                                            el.addEventListener(
+                                                "transitionend",
+                                                () => setIsOpenVideo(true),
+                                                { once: true }
+                                            );
+                                        }
+
+                                    }}
                                 >
                                     <div className="nav-title">
                                         IDC<br />
@@ -100,6 +119,7 @@ function MainPage() {
                         {/* Navigation Buttons End */}
                     </>
                 )}
+                {isOpenVideo && (<VideoComponent/>)}
             </div>
         </>
     );
