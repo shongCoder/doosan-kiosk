@@ -8,9 +8,11 @@
     position: absolute;
     top: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
     z-index: 100;
     transition: opacity 0.4s ease;
-}
+ }
 
 #feature-wrap .overlay {
     width: 100vw;
@@ -62,6 +64,15 @@
     transition: all 0.35s ease-in-out;
 }
 
+#feature-wrap.fade-in {
+    opacity: 1;
+}
+
+#feature-wrap.fade-out {
+    opacity: 0;
+}
+
+/* Contents */
 #feature-wrap .contents {
     margin-top: 4.5rem;
     width: 100vw;
@@ -69,10 +80,143 @@
     box-sizing: border-box;
 }
 
-#feature-wrap.fade-in {
+.contents.fade-in {
     opacity: 1;
+    transition: opacity 0.35s ease;
 }
 
-#feature-wrap.fade-out {
+.contents.fade-out {
     opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+#feature-wrap .contents .title-box {
+    margin-bottom: 3.5rem;
+}
+
+#feature-wrap .contents .title-box .sub-title {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+    color: #CCDFF1;
+    margin-bottom: 0.25rem;
+}
+
+#feature-wrap .contents .title-box .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 3.5rem;
+    background: linear-gradient(90deg, #F3F7FD 0%, #919397 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#feature-wrap .contents .cont-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    box-sizing: border-box;
+}
+
+#feature-wrap .contents .cont-wrap .cont-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+#feature-wrap .contents .cont-wrap .cont-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+#feature-wrap .contents .cont-wrap .cont-title .dot {
+    color: #005EB8;
+    font-size: 1.75rem;
+    line-height: 2.5rem;
+}
+
+#feature-wrap .contents .cont-wrap .cont-title .main {
+    color: white;
+    font-size: 1.75rem;
+    line-height: 2.5rem;
+}
+
+#feature-wrap .contents .cont-wrap .cont-title .line {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+    color: #F3F7FD;
+    opacity: 32%;
+}
+
+#feature-wrap .contents .cont-wrap .cont-title .qty {
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: #CCDFF1;
+}
+
+#feature-wrap .contents.sec .cont-wrap .cont-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 두 번째 탭(contents.sec)에서만 적용되는 wrap */
+#feature-wrap .contents.sec .card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* 중앙 정렬 */
+}
+
+/* card-wrap 안의 cont-title 및 cont-card는 왼쪽 정렬 */
+#feature-wrap .contents.sec .card-wrap,
+#feature-wrap .contents.sec .card-wrap .cont-card {
+    align-items: flex-start;   /* 왼쪽 정렬 */
+    justify-content: flex-start;
+}
+
+#feature-wrap .contents .cont-wrap .cont-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    background: linear-gradient(0deg, rgba(204, 223, 241, 0.04), rgba(204, 223, 241, 0.04)),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.24)),
+    linear-gradient(107.56deg, rgba(0, 147, 184, 0.0192) 0%, rgba(0, 94, 184, 0.0576) 69.71%, rgba(0, 94, 184, 0.0096) 100%);
+    box-shadow: -0.5px -0.5px 0 0 #FFFFFF3D inset,
+    0.6px 0.6px 1px 0 #FFFFFF1F inset;
+    backdrop-filter: blur(24px)
+}
+
+#feature-wrap .contents .cont-wrap .cont-card button {
+    background: transparent;
+    border: none;
+}
+
+#feature-wrap .contents .cont-wrap .cont-card button img {
+    width: 20rem;
+}
+
+#feature-wrap .contents .cont-wrap .cont-card button.sec img {
+    width: 42rem;
+}
+
+.bottom-text {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 200;
 }
