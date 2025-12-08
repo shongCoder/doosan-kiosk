@@ -12,7 +12,7 @@ function Header({ title, isBack, onBackClick }) {
                     <button style={{ marginRight: "-4.25rem" }} onClick={onBackClick}>
                         <img src={BackBtn} />
                     </button>
-                ) : (<div></div>)}
+                ) : (<div style={{width: "80px", marginRight: "-4.25rem"}}></div>)}
 
                 {title === "" ?
                     (<img src={Logo} />) : (<h2 className="header-title">{title}</h2>)}
