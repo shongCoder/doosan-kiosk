@@ -76,6 +76,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 11.25rem;
+    margin-top: -6rem;
 }
 
 #wrapper #prod-info .title {

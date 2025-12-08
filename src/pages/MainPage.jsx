@@ -5,6 +5,7 @@ import ArrowTopBtn from "/img/main/top-arrow-button.svg"
 import LinkBtn from "/img/main/link-btn.svg"
 import Header from "../components/layout/Header";
 import VideoComponent from "../components/modals/VideoComponent";
+import OverviewComponent from "../components/modals/OverviewComponent";
 
 function MainPage() {
     const [isBack, setIsBack] = useState(false);
@@ -14,7 +15,9 @@ function MainPage() {
     const [startAnim, setStartAnim] = useState(false); // 애니메이션
 
     const navItem1Ref = useRef(null);
+    const navItem2Ref = useRef(null);
     const [isOpenVideo, setIsOpenVideo] = useState(false);
+    const [isOpenOverview, setIsOpenOverview] = useState(false);
 
     useEffect(() => {
         if (isOpenInfo) {
@@ -25,7 +28,12 @@ function MainPage() {
     return (
         <>
             <div id="wrapper">
-                <Header isBack={isBack} />
+                <Header isBack={isBack} onBackClick={() => {
+                    setIsBack(false);
+                    setIsOpenVideo(false);
+                    setIsOpenOverview(false);
+                    setActiveNav(0);
+                }} />
                 <video className="prod-vedio" muted autoPlay loop>
                     <source src={ProductRoop} type="video/webm" />
                 </video>
@@ -89,9 +97,23 @@ function MainPage() {
                                         <img src={LinkBtn} alt="move to page" />
                                     </div>
                                 </li>
+
                                 <li
+                                    ref={navItem2Ref}
                                     className={activeNav === 2 ? "active" : ""}
-                                    onClick={() => setActiveNav(2)}
+                                    onClick={() => {
+                                        setActiveNav(2);
+                                        setIsBack(true);
+                                        const el = navItem2Ref.current;
+                                        if (el) {
+                                            el.addEventListener(
+                                                "transitionend",
+                                                () => setIsOpenOverview(true),
+                                                { once: true }
+                                            );
+                                        }
+
+                                    }}
                                 >
                                     <div className="nav-title">
                                         Hydrogen<br />
@@ -102,6 +124,7 @@ function MainPage() {
                                         <img src={LinkBtn} alt="move to page" />
                                     </div>
                                 </li>
+
                                 <li
                                     className={activeNav === 3 ? "active" : ""}
                                     onClick={() => setActiveNav(3)}
@@ -119,7 +142,8 @@ function MainPage() {
                         {/* Navigation Buttons End */}
                     </>
                 )}
-                {isOpenVideo && (<VideoComponent/>)}
+                <VideoComponent isOpen={isOpenVideo}/>
+                <OverviewComponent isOpen={isOpenOverview}/>
             </div>
         </>
     );
