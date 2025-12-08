@@ -1,13 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './MajorFeaturesComponent.css'
 import "@fontsource/tomorrow/700.css";
 
 function MajorFeaturesComponent({isOpen}) {
     const [toggle, setToggle] = useState(0);
+    const [visible, setVisible] = useState(isOpen);
+
+    useEffect(() => {
+        if (isOpen) {
+            setVisible(true);
+        } else {
+            const timer = setTimeout(() => setVisible(false), 400);
+            return () => clearTimeout(timer);
+        }
+    }, [isOpen]);
+
     return (
         <>
-            {isOpen && (
-                <div id="feature-wrap">
+            {visible && (
+                <div id="feature-wrap" className={isOpen ? 'fade-in' : 'fade-out'}>
                     <div className="overlay">
                         <div className="menu-toggle-box" style={{ fontFamily: "Tomorrow", fontWeight: 700 }}>
                             <div

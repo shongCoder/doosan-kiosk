@@ -8,6 +8,7 @@
     z-index: 100;
     background-repeat: no-repeat;
     background-size: cover;
+    transition: opacity 0.4s ease;
 }
 
 #overview-wrap .overlay {
@@ -59,4 +60,12 @@
 
 #overview-wrap .contents .bottom-logo {
     opacity: 68%;
+}
+
+#overview-wrap.fade-in {
+    opacity: 1;
+}
+
+#overview-wrap.fade-out {
+    opacity: 0;
 }

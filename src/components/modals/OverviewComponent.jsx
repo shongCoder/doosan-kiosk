@@ -6,21 +6,25 @@ import BgImage from '/img/overview/overview-back.png'
 function OverviewComponent({isOpen}) {
     const [imageLoaded, setImageLoaded] = useState(false);
     const [showContent, setShowContent] = useState(false);
+    const [visible, setVisible] = useState(isOpen);
 
     useEffect(() => {
+        if (isOpen) {
+            setVisible(true);
 
-        if (!isOpen) return;
+            const img = new Image();
+            img.src = BgImage;
+            img.onload = () => setImageLoaded(true);
 
-        const img = new Image();
-        img.src = BgImage;
-        img.onload = () => {
-            setImageLoaded(true);
-        };
-
+        } else {
+            setImageLoaded(false);
+            setShowContent(false);
+            const timer = setTimeout(() => setVisible(false), 400);
+            return () => clearTimeout(timer);
+        }
     }, [isOpen]);
 
     useEffect(() => {
-
         if (!imageLoaded) return;
 
         const timer = setTimeout(() => {
@@ -28,15 +32,14 @@ function OverviewComponent({isOpen}) {
         }, 1000);
 
         return () => clearTimeout(timer);
-
     }, [imageLoaded]);
 
-    if (!isOpen) return null; // 닫힐 때는 컴포넌트 자체가 없어짐
+    if (!visible) return null;   // VideoComponent와 동일
 
     return (
         <>
-            {isOpen && (
-                <div id="overview-wrap"  style={{ backgroundImage: `url(${BgImage})` }}>
+            {visible && (
+                <div id="overview-wrap" className={isOpen ? 'fade-in' : 'fade-out'} style={{ backgroundImage: `url(${BgImage})` }}>
                     <div className={`contents ${showContent ? "show" : ""}`}>
                         <h2>Hydrogen Powered Solution Provider</h2>
                         <p>Doosan aims to supply clean energy throughout human daily life by<br />
