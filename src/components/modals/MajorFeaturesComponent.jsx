@@ -7,12 +7,16 @@ import WaterCooling from "/img/features/Water-Cooling-type.png"
 import AirCooling from "/img/features/Air-Cooling-type.png"
 import DS035CCD from "/img/features/DS035CCD.png"
 import BottomText from "/img/features/bottom-text.svg"
+import PEMFCDetailComponent from "./features/PEMFCDetailComponent";
 
 function MajorFeaturesComponent({isOpen}) {
     const [toggle, setToggle] = useState(0);
     const [visible, setVisible] = useState(isOpen);
     const [displayToggle, setDisplayToggle] = useState(0);
     const [fade, setFade] = useState("fade-in");
+
+    // 모달
+    const [isOpenPemfc, setIsOpenPemfc] = useState(false);
 
     useEffect(() => {
         if (isOpen) {
@@ -37,6 +41,7 @@ function MajorFeaturesComponent({isOpen}) {
 
     return (
         <>
+            <PEMFCDetailComponent isOpen={isOpenPemfc} onClose={() => setIsOpenPemfc(false)} />
             {visible && (
                 <div id="feature-wrap" className={isOpen ? 'fade-in' : 'fade-out'}>
                     <div className="overlay">
@@ -72,7 +77,7 @@ function MajorFeaturesComponent({isOpen}) {
                                             <div className="qty">2 Products</div>
                                         </div>
                                         <div className="cont-card">
-                                            <button>
+                                            <button onClick={() => setIsOpenPemfc(true)}>
                                                 <img src={PEMFC} />
                                             </button>
                                             <button>
