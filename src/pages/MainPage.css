@@ -1,13 +1,13 @@
 #wrapper {
+    position: relative;
     width: 100vw;
     height: 100vh;
-    background: url('/img/main-back.png');
+    background: url('/img/main/main-back.png');
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     padding: 0 11.25rem;
     box-sizing: border-box;
 }
@@ -61,10 +61,6 @@
         transform: translateX(-50%) translateY(20px);
     }
 }
-#wrapper .touch-here button {
-    background: transparent;
-    border: none;
-}
 
 #wrapper .touch-here span {
     color: #F3F7FD;
@@ -73,7 +69,8 @@
     font-weight: 700;
 }
 
-#wrapper .prod-info {
+/* Product Information */
+#wrapper #prod-info {
     width: 100%;
     color: black;
     display: flex;
@@ -81,11 +78,11 @@
     align-items: center;
 }
 
-#wrapper .prod-info .title {
+#wrapper #prod-info .title {
     margin-bottom: 1.5rem;
 }
 
-#wrapper .prod-info .title span {
+#wrapper #prod-info .title span {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.75rem;
@@ -94,20 +91,20 @@
     margin-bottom: 0.25rem;
 }
 
-#wrapper .prod-info .title h1 {
+#wrapper #prod-info .title h1 {
     font-size: 2.5rem;
     font-weight: 700;
     line-height: 3.5rem;
     color: #F3F7FD;
 }
 
-#wrapper .prod-info .contents {
+#wrapper #prod-info .contents {
     color: white;
     width: 31.25rem;
     border-radius: 1rem;
     background:
-            linear-gradient(rgba(204, 223, 241, 0.04), rgba(204, 223, 241, 0.04)),
-            linear-gradient(107.56deg, rgba(0, 147, 184, 0.08) 0%, rgba(0, 94, 184, 0.24) 69.71%, rgba(0, 94, 184, 0.04) 100%);
+            linear-gradient(0deg, rgba(204, 223, 241, 0.08), rgba(204, 223, 241, 0.08)),
+            linear-gradient(107.56deg, rgba(0, 147, 184, 0.04) 0%, rgba(0, 94, 184, 0.12) 69.71%, rgba(0, 94, 184, 0) 100%);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(204, 223, 241, 0.04);
     box-shadow:
@@ -117,7 +114,7 @@
     overflow: hidden;
 }
 
-#wrapper .prod-info .contents ul {
+#wrapper #prod-info .contents ul {
     width: 100%;
     height: 100%;
     padding: 1.25rem 1.5rem;
@@ -127,16 +124,98 @@
     color: white;
 }
 
-#wrapper .prod-info .contents ul li {
+#wrapper #prod-info .contents ul li {
     padding-bottom: 0.75rem;
     border-bottom: 1px solid rgba(204, 223, 241, 0.04);
 }
 
-#wrapper .prod-info .contents ul li:last-child {
+#wrapper #prod-info .contents ul li:last-child {
     padding: 0;
 }
 
-#wrapper .prod-info .contents ul li span:first-child {
+#wrapper #prod-info .contents ul li span:first-child {
     display: inline-block;
     width: 1.5rem;
+}
+
+/* Navigation Buttons */
+#wrapper #nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 2.5rem 11.25rem;
+    box-sizing: border-box;
+}
+
+#wrapper #nav ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.75rem
+}
+
+#wrapper #nav ul li {
+    flex: 1;
+    border-radius: 1.25rem;
+    padding: 1rem;
+    background: rgba(204, 223, 241, 0.08);
+    backdrop-filter: blur(2px);
+    box-shadow:
+            -0.5px -0.5px 0 0 rgba(255, 255, 255, 0.12) inset,
+            0.6px 0.6px 1px 0 rgba(255, 255, 255, 0.24) inset,
+            0.5px 0.5px 0 0 rgba(255, 255, 255, 0.12) inset;
+}
+
+#wrapper #nav ul li.active {
+    border: 1px solid rgba(0, 94, 184, 0.24);
+    background:
+            linear-gradient(0deg, rgba(204, 223, 241, 0.08), rgba(204, 223, 241, 0.08)),
+            linear-gradient(107.56deg, rgba(0, 147, 184, 0.04) 0%, rgba(0, 94, 184, 0.12) 69.71%, rgba(0, 94, 184, 0) 100%);
+    transform: translateY(-1.5rem);
+    transition: transform 0.25s ease;
+}
+
+#wrapper #nav ul li .nav-title {
+    height: 7.5rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #F3F7FD;
+}
+
+#wrapper #nav ul li .nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+/* 나타나기 애니메이션 */
+.fade-bounce-up {
+    opacity: 0;
+    transform: translateY(2rem);
+}
+
+.fade-bounce-up.show {
+    animation: bounceUp 0.75s ease forwards;
+}
+
+@keyframes bounceUp {
+    0% {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-0.5rem); /* 더 올라감 */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* 제자리 */
+    }
 }

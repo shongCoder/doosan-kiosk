@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Header.css"
 import Logo from "/doosan-logo.svg"
-import BackBtn from "/img/back-btn.svg"
+import BackBtn from "/img/header/back-btn.svg"
 
 function Header({isBack}) {
     return (

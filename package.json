@@ -15,7 +15,7 @@
   },
   "build": {
     "appId": "com.bara.app",
-    "productName": "Doosan4",
+    "productName": "DMI",
     "directories": {
       "output": "release"
     },
