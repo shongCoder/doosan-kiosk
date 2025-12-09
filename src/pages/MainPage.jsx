@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {motion} from 'framer-motion';
 import './MainPage.css'
 import ProductRoop from "/img/main/product.webm"
 import ArrowTopBtn from "/img/main/top-arrow-button.svg"
@@ -40,17 +41,32 @@ function MainPage() {
                     setActiveNav(0);
                     setHeaderTitle("");
                 }} />
+
                 <video className="prod-vedio" muted autoPlay loop>
                     <source src={ProductRoop} type="video/webm" />
                 </video>
 
                 {!isOpenInfo ? (
-                    <div className="touch-here" onClick={() => setIsOpenInfo(true)}>
+                    <motion.div
+                        className="touch-here"
+                        onClick={() => setIsOpenInfo(true)}
+                        animate={{
+                            y: [0, -20, 0],          // 아래 → 위 → 아래
+                            opacity: [0.6, 1, 0.6],  // 60% → 100% → 60%
+                        }}
+                        transition={{
+                            times: [0, 0.6, 1],
+                            duration: 0.9,           // 600ms(위로) + 300ms(아래로)
+                            ease: ["easeOut", "easeIn"], // Gentle → Slow 느낌을 조합
+                            repeat: Infinity,
+                            repeatDelay: 0.8,        // Delay 800ms
+                        }}
+                    >
                         <div>
                             <img src={ArrowTopBtn} alt="arrow top" />
                         </div>
                         <span>Touch here</span>
-                    </div>
+                    </motion.div>
                 ):(
                     <>
                         <div id="prod-info" className={`fade-bounce-up ${startAnim ? "show" : ""}`}>

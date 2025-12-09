@@ -31,35 +31,35 @@
     transform: translateX(-50%);
     bottom: 5rem;
 
-    animation: float-touch 4s ease-in-out infinite;
+    /*animation: float-touch 4s ease-in-out infinite;*/
 }
 
-@keyframes float-touch {
-    0% {
-        opacity: 0.6;
-        transform: translateX(-50%) translateY(20px);
-    }
-    20% {
-        opacity: 0.6;
-        transform: translateX(-50%) translateY(20px);
-    }
-    35% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(-20px);
-    }
-    50% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(-20px);
-    }
-    65% {
-        opacity: 0.6;
-        transform: translateX(-50%) translateY(20px);
-    }
-    100% {
-        opacity: 0.6;
-        transform: translateX(-50%) translateY(20px);
-    }
-}
+/*@keyframes float-touch {*/
+/*    0% {*/
+/*        opacity: 0.6;*/
+/*        transform: translateX(-50%) translateY(20px);*/
+/*    }*/
+/*    20% {*/
+/*        opacity: 0.6;*/
+/*        transform: translateX(-50%) translateY(20px);*/
+/*    }*/
+/*    35% {*/
+/*        opacity: 1;*/
+/*        transform: translateX(-50%) translateY(-20px);*/
+/*    }*/
+/*    50% {*/
+/*        opacity: 1;*/
+/*        transform: translateX(-50%) translateY(-20px);*/
+/*    }*/
+/*    65% {*/
+/*        opacity: 0.6;*/
+/*        transform: translateX(-50%) translateY(20px);*/
+/*    }*/
+/*    100% {*/
+/*        opacity: 0.6;*/
+/*        transform: translateX(-50%) translateY(20px);*/
+/*    }*/
+/*}*/
 
 #wrapper .touch-here span {
     color: #F3F7FD;
