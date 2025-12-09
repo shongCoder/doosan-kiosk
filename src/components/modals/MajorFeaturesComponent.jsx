@@ -7,13 +7,14 @@ import WaterCooling from "/img/features/Water-Cooling-type.png"
 import AirCooling from "/img/features/Air-Cooling-type.png"
 import DS035CCD from "/img/features/DS035CCD.png"
 import BottomText from "/img/features/bottom-text.svg"
-import PEMFCDetailComponent from "./features/PEMFCDetailComponent";
+import DetailComponent from "./features/DetailComponent";
 
 function MajorFeaturesComponent({isOpen}) {
     const [toggle, setToggle] = useState(0);
     const [visible, setVisible] = useState(isOpen);
     const [displayToggle, setDisplayToggle] = useState(0);
     const [fade, setFade] = useState("fade-in");
+    const [product, setProduct] = useState("");
 
     // 모달
     const [isOpenPemfc, setIsOpenPemfc] = useState(false);
@@ -41,7 +42,7 @@ function MajorFeaturesComponent({isOpen}) {
 
     return (
         <>
-            <PEMFCDetailComponent isOpen={isOpenPemfc} onClose={() => setIsOpenPemfc(false)} />
+            <DetailComponent isOpen={isOpenPemfc} onClose={() => setIsOpenPemfc(false)} product={product} />
             {visible && (
                 <div id="feature-wrap" className={isOpen ? 'fade-in' : 'fade-out'}>
                     <div className="overlay">
@@ -77,10 +78,20 @@ function MajorFeaturesComponent({isOpen}) {
                                             <div className="qty">2 Products</div>
                                         </div>
                                         <div className="cont-card">
-                                            <button onClick={() => setIsOpenPemfc(true)}>
+                                            <button
+                                                onClick={() => {
+                                                    setIsOpenPemfc(true);
+                                                    setProduct("PEMFC");
+                                                }}
+                                            >
                                                 <img src={PEMFC} />
                                             </button>
-                                            <button>
+                                            <button
+                                                onClick={() => {
+                                                    setIsOpenPemfc(true);
+                                                    setProduct("SOFC");
+                                                }}
+                                            >
                                                 <img src={SOFC} />
                                             </button>
                                         </div>
@@ -93,10 +104,20 @@ function MajorFeaturesComponent({isOpen}) {
                                             <div className="qty">2 Products</div>
                                         </div>
                                         <div className="cont-card">
-                                            <button>
+                                            <button
+                                                onClick={() => {
+                                                    setIsOpenPemfc(true);
+                                                    setProduct("Water Cooling type");
+                                                }}
+                                            >
                                                 <img src={WaterCooling} />
                                             </button>
-                                            <button>
+                                            <button
+                                                onClick={() => {
+                                                    setIsOpenPemfc(true);
+                                                    setProduct("Air Cooling type");
+                                                }}
+                                            >
                                                 <img src={AirCooling} />
                                             </button>
                                         </div>
@@ -118,7 +139,13 @@ function MajorFeaturesComponent({isOpen}) {
                                                 <div className="qty">1 Products</div>
                                             </div>
                                             <div className="cont-card">
-                                                <button className="sec">
+                                                <button
+                                                    className="sec"
+                                                    onClick={() => {
+                                                        setIsOpenPemfc(true);
+                                                        setProduct("DS035CCD");
+                                                    }}
+                                                >
                                                     <img src={DS035CCD} />
                                                 </button>
                                             </div>

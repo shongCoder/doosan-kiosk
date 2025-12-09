@@ -1,11 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import './DetailComponent.css'
 import CloseBtn from "/img/features/close-btn.svg"
-import Detail from "/img/features/PEMFC-detail.png"
+import FEMFC from "/img/features/PEMFC-detail.png"
+import SOFC from "/img/features/SOFC-detail.png"
+import WaterCooling from "/img/features/Water-Cooling-type-detail.png"
+import AirCooling from "/img/features/Air-Cooling-type-detail.png"
+import DS035CCD from "/img/features/DS035CCD-detail.png"
 
-function PEMFCDetailComponent({isOpen, onClose}) {
-
+function DetailComponent({isOpen, onClose, product}) {
     const [visible, setVisible] = useState(isOpen);
+
+    const productImages = {
+        "PEMFC": FEMFC,
+        "SOFC": SOFC,
+        "Water Cooling type": WaterCooling,
+        "Air Cooling type": AirCooling,
+        "DS035CCD": DS035CCD,
+    };
 
     useEffect(() => {
         if (isOpen) {
@@ -24,7 +35,7 @@ function PEMFCDetailComponent({isOpen, onClose}) {
                         <div className="detail-header">
                             <div className="title">
                                 <div className="sub-title">Specifications</div>
-                                <div className="main-title">PEMFC</div>
+                                <div className="main-title">{product}</div>
                             </div>
                             <button className="close" onClick={onClose}>
                                 <img src={CloseBtn} />
@@ -32,7 +43,7 @@ function PEMFCDetailComponent({isOpen, onClose}) {
                         </div>
                         {/* Header */}
                         <div className="detail-body">
-                            <img src={Detail} />
+                            <img src={productImages[product]} alt={product} />
                         </div>
                     </div>
                 </div>
@@ -42,4 +53,4 @@ function PEMFCDetailComponent({isOpen, onClose}) {
     );
 }
 
-export default PEMFCDetailComponent;
+export default DetailComponent;
