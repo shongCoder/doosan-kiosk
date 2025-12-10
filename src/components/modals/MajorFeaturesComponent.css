@@ -42,16 +42,21 @@
     flex: 1;
     border-radius: 2.375rem;
     padding: 1rem 0;
-    font-size: 1.6875rem;
-    font-weight: 700;
-    text-align: center;
-    color: white;
     opacity: 60%;
-    transform: scaleY(0.95);
     transform-origin: center;
     letter-spacing: 0.05em;
     background: transparent;
     border: 1px solid transparent;
+}
+
+#feature-wrap .menu-toggle-box .menu-toggle span {
+    display: block;
+    font-size: 1.6875rem;
+    font-weight: 700;
+    text-align: center;
+    color: white;
+    transform: scaleY(0.85);
+    width: 100%;
 }
 
 #feature-wrap .menu-toggle-box .menu-toggle.active {
@@ -133,6 +138,7 @@
     color: white;
     font-size: 1.75rem;
     line-height: 2.5rem;
+    transform: scaleY(0.85);
 }
 
 #feature-wrap .contents .cont-wrap .cont-title .line {

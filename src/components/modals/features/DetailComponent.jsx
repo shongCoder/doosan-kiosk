@@ -6,9 +6,10 @@ import SOFC from "/img/features/SOFC-detail.png"
 import WaterCooling from "/img/features/Water-Cooling-type-detail.png"
 import AirCooling from "/img/features/Air-Cooling-type-detail.png"
 import DS035CCD from "/img/features/DS035CCD-detail.png"
+import { motion } from  "framer-motion";
+import {AnimatePresence} from "framer-motion";
 
 function DetailComponent({isOpen, onClose, product}) {
-    const [visible, setVisible] = useState(isOpen);
 
     const productImages = {
         "PEMFC": FEMFC,
@@ -18,19 +19,26 @@ function DetailComponent({isOpen, onClose, product}) {
         "DS035CCD": DS035CCD,
     };
 
-    useEffect(() => {
-        if (isOpen) {
-            setVisible(true);
-        } else {
-            const timer = setTimeout(() => setVisible(false), 400);
-            return () => clearTimeout(timer);
-        }
-    }, [isOpen]);
-
     return (
-        <>
-            {visible && (
-                <div id="detail-wrap" className={isOpen ? 'fade-in' : 'fade-out'}>
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    id="detail-wrap"
+                    key="detail"
+                    initial={{ opacity: 0 }}
+                    animate={{
+                        opacity: 1
+                    }}
+                    exit={{
+                        opacity: 0,
+                    }}
+                    transition={{
+                        duration: isOpen ? 0.3 : 0.6,
+                        ease: isOpen
+                            ? [0.17, 0.67, 0.83, 0.67]
+                            : [0.25, 0.25, 0.0, 1.0],
+                    }}
+                >
                     <div className="detail-box">
                         <div className="detail-header">
                             <div className="title">
@@ -41,15 +49,14 @@ function DetailComponent({isOpen, onClose, product}) {
                                 <img src={CloseBtn} />
                             </button>
                         </div>
-                        {/* Header */}
+
                         <div className="detail-body">
                             <img src={productImages[product]} alt={product} />
                         </div>
                     </div>
-                </div>
+                </motion.div>
             )}
-
-        </>
+        </AnimatePresence>
     );
 }
 

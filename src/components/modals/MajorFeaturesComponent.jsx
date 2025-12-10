@@ -43,18 +43,18 @@ function MajorFeaturesComponent({isOpen}) {
                         }}
                     >
                         <div className="overlay">
-                            <div className="menu-toggle-box" style={{ fontFamily: "Tomorrow", fontWeight: 700 }}>
+                            <div className="menu-toggle-box" style={{ fontFamily: "play", fontWeight: 700 }}>
                                 <div
                                     className={`menu-toggle ${toggle === 0 ? "active" : ""}`}
                                     onClick={() => handleToggle(0)}
                                 >
-                                    Fuel Cell Sysyems
+                                    <span>Fuel Cell Sysyems</span>
                                 </div>
                                 <div
                                     className={`menu-toggle ${toggle === 1 ? "active" : ""}`}
                                     onClick={() => handleToggle(1)}
                                 >
-                                    Hydrogen Drones
+                                    <span>Hydrogen Drones</span>
                                 </div>
                             </div>
                             {/* Toggle Box */}
@@ -69,8 +69,8 @@ function MajorFeaturesComponent({isOpen}) {
                                     <div className="cont-wrap">
                                         <div className="cont-box">
                                             <div className="cont-title">
-                                                <div className="dot" style={{ fontFamily: "Tomorrow", fontWeight: 700 }}>∙</div>
-                                                <div className="main" style={{ fontFamily: "Tomorrow", fontWeight: 700 }}>Power Generation</div>
+                                                <div className="dot" style={{ fontFamily: "play", fontWeight: 700 }}>∙</div>
+                                                <div className="main" style={{ fontFamily: "play", fontWeight: 700 }}>Power Generation</div>
                                                 <div className="line">|</div>
                                                 <div className="qty">2 Products</div>
                                             </div>
@@ -95,8 +95,8 @@ function MajorFeaturesComponent({isOpen}) {
                                         </div>
                                         <div className="cont-box">
                                             <div className="cont-title">
-                                                <div className="dot" style={{ fontFamily: "Tomorrow", fontWeight: 700 }}>∙</div>
-                                                <div className="main" style={{ fontFamily: "Tomorrow", fontWeight: 700 }}>Mobility</div>
+                                                <div className="dot" style={{ fontFamily: "play", fontWeight: 700 }}>∙</div>
+                                                <div className="main" style={{ fontFamily: "play", fontWeight: 700 }}>Mobility</div>
                                                 <div className="line">|</div>
                                                 <div className="qty">2 Products</div>
                                             </div>
@@ -132,7 +132,7 @@ function MajorFeaturesComponent({isOpen}) {
                                         <div className="cont-box">
                                             <div className="card-wrap">
                                                 <div className="cont-title">
-                                                    <div className="dot" style={{ fontFamily: "Tomorrow", fontWeight: 700 }}>∙</div>
+                                                    <div className="dot" style={{ fontFamily: "play", fontWeight: 700 }}>∙</div>
                                                     <div className="qty">1 Products</div>
                                                 </div>
                                                 <div className="cont-card">
