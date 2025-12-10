@@ -16,6 +16,7 @@ function MainPage() {
     const [isOpenInfo, setIsOpenInfo] = useState(false);
     const [activeNav, setActiveNav] = useState(0);
     const [startAnim, setStartAnim] = useState(false); // 애니메이션
+    const [loop, setLoop] = useState(false);
 
     const navItem1Ref = useRef(null);
     const navItem2Ref = useRef(null);
@@ -51,15 +52,15 @@ function MainPage() {
                         className="touch-here"
                         onClick={() => setIsOpenInfo(true)}
                         animate={{
-                            y: [0, -20, 0],          // 아래 → 위 → 아래
-                            opacity: [0.6, 1, 0.6],  // 60% → 100% → 60%
+                            bottom: ["3.75rem", "3.75rem", "5rem", "5rem", "3.75rem"],
+                            opacity: [0.6, 0.6, 1, 1, 0.6],
                         }}
                         transition={{
-                            times: [0, 0.6, 1],
-                            duration: 0.9,           // 600ms(위로) + 300ms(아래로)
-                            ease: ["easeOut", "easeIn"], // Gentle → Slow 느낌을 조합
+                            duration: 1.2,
+                            times: [0, 0.1, 0.35, 0.55, 1],
+                            ease: ["easeOut", "easeIn", "easeIn"],
                             repeat: Infinity,
-                            repeatDelay: 0.8,        // Delay 800ms
+                            repeatDelay: 0.6,
                         }}
                     >
                         <div>
@@ -68,27 +69,49 @@ function MainPage() {
                         <span>Touch here</span>
                     </motion.div>
                 ):(
-                    <>
-                        <div id="prod-info" className={`fade-bounce-up ${startAnim ? "show" : ""}`}>
-                            <div></div>
-                            <div>
-                                <div className="title">
-                                    <span>Major Features</span>
-                                    <h1>PEMFC</h1>
+                    <motion.div
+                        className="info-wrap"
+                        initial={{ translateY: 20, opacity: 0 }}
+                        animate={startAnim ? { translateY: [20, -10, 0], opacity: [0, 1, 1] } : {}}
+                        transition={{
+                            duration: 0.8,
+                            ease: "easeOut",
+                            onComplete: () => setLoop(true)   // 등장 애니 끝나면 루프 시작
+                        }}
+                    >
+                        {loop && (
+                            <motion.div
+                                id="prod-info"
+                                animate={{
+                                    opacity: [1, 1, 0, 0, 1],  // 네 단계 흐름
+                                }}
+                                transition={{
+                                    duration: 8.8,
+                                    times: [0, 0.454, 0.59, 0.727, 1],
+                                    ease: "easeInOut",
+                                    repeat: Infinity,
+                                }}
+                            >
+                                <div></div>
+                                <div>
+                                    <div className="title">
+                                        <span>Major Features</span>
+                                        <h1>PEMFC</h1>
+                                    </div>
+                                    <div className="contents">
+                                        <ul>
+                                            <li><span>-</span><span>Operable within minutes</span></li>
+                                            <li><span>-</span><span>Load-following operation</span></li>
+                                            <li><span>-</span><span>24/7 operation, 365 days a year</span></li>
+                                            <li><span>-</span><span>Minimum installation area</span></li>
+                                            <li><span>-</span><span>Minimum construction period</span></li>
+                                            <li><span>-</span><span>On/Off</span></li>
+                                            <li><span>-</span><span>RE100</span></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div className="contents">
-                                    <ul>
-                                        <li><span>-</span><span>Operable within minutes</span></li>
-                                        <li><span>-</span><span>Load-following operation</span></li>
-                                        <li><span>-</span><span>24/7 operation, 365 days a year</span></li>
-                                        <li><span>-</span><span>Minimum installation area</span></li>
-                                        <li><span>-</span><span>Minimum construction period</span></li>
-                                        <li><span>-</span><span>On/Off</span></li>
-                                        <li><span>-</span><span>RE100</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                            </motion.div>
+                        )}
                         {/* Product Information End */}
 
                         <div id="nav" className={`fade-bounce-up ${startAnim ? "show" : ""}`}>
@@ -176,7 +199,7 @@ function MainPage() {
                             </ul>
                         </div>
                         {/* Navigation Buttons End */}
-                    </>
+                    </motion.div>
                 )}
                 <VideoComponent isOpen={isOpenVideo} />
                 <OverviewComponent isOpen={isOpenOverview} />
