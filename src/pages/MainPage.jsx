@@ -8,8 +8,11 @@ import Header from "../components/layout/Header";
 import VideoComponent from "../components/modals/VideoComponent";
 import OverviewComponent from "../components/modals/OverviewComponent";
 import MajorFeaturesComponent from "../components/modals/MajorFeaturesComponent";
+import {IdleContext} from "../context/IdleContext";
 
 function MainPage() {
+    const [idleEnabled, setIdleEnabled] = useState(false);
+
     /* 헤더 레이아웃 상태 */
     const [isBack, setIsBack] = useState(false);
     const [headerTitle, setHeaderTitle] = useState("");
@@ -20,15 +23,21 @@ function MainPage() {
     const [startAnim, setStartAnim] = useState(false);
     const [loop, setLoop] = useState(false);
 
-    /* 네비게이션 상태 */
-    const navItem1Ref = useRef(null);
-    const navItem2Ref = useRef(null);
-    const navItem3Ref = useRef(null);
-
     /* 팝업 상태 */
     const [isOpenVideo, setIsOpenVideo] = useState(false);
     const [isOpenOverview, setIsOpenOverview] = useState(false);
     const [isOpenFeature, setIsOpenFeature] = useState(false);
+
+    /* 특징페이지 디테일 모달 상태 */
+    const [isOpenDetail, setIsOpenDetail] = useState(false);
+    const [detailProduct, setDetailProduct] = useState("");
+
+    /* 네비게이션 Ref */
+    const navItem1Ref = useRef(null);
+    const navItem2Ref = useRef(null);
+    const navItem3Ref = useRef(null);
+
+    const idleTimer = useRef(null);
 
     /* info-wrap 나타나기 */
     useEffect(() => {
@@ -44,8 +53,39 @@ function MainPage() {
         }
     }, [activeNav]);
 
+    const resetToInitial = () => {
+        setIsOpenInfo(false);
+        setIsBack(false);
+        setIsOpenVideo(false);
+        setIsOpenOverview(false);
+        setIsOpenFeature(false);
+        setActiveNav(0);
+        setHeaderTitle("");
+        setStartAnim(false);
+        setLoop(false);
+        setIsOpenDetail(false);
+        setDetailProduct("");
+    };
+
+    const resetIdle = () => {
+        if (!idleEnabled) return;  // ⭐ 기능 OFF면 바로 종료
+
+        if (idleTimer.current) clearTimeout(idleTimer.current);
+
+        idleTimer.current = setTimeout(() => {
+            resetToInitial();
+        }, 5000);
+    };
+
+    // 컴포넌트 언마운트 시 타이머 정리
+    useEffect(() => {
+        return () => {
+            if (idleTimer.current) clearTimeout(idleTimer.current);
+        };
+    }, []);
+
     return (
-        <>
+        <IdleContext.Provider value={{ resetIdle }}>
             <div id="wrapper">
                 <Header title={headerTitle} isBack={isBack} onBackClick={() => {
                     setIsBack(false);
@@ -54,9 +94,9 @@ function MainPage() {
                     setIsOpenFeature(false);
                     setActiveNav(0);
                     setHeaderTitle("");
-
                     setStartAnim(false);
                     setLoop(false);
+                    resetIdle();
                 }} />
 
                 <video className="prod-vedio" muted autoPlay loop>
@@ -66,7 +106,11 @@ function MainPage() {
                 {!isOpenInfo ? (
                     <motion.div
                         className="touch-here"
-                        onClick={() => setIsOpenInfo(true)}
+                        style={{ left: "50%", x: "-50%" }}
+                        onClick={() => {
+                            setIsOpenInfo(true);
+                            resetIdle();
+                        }}
                         animate={{
                             bottom: ["3.75rem", "3.75rem", "5rem", "5rem", "3.75rem"],
                             opacity: [0.6, 0.6, 1, 1, 0.6],
@@ -150,6 +194,7 @@ function MainPage() {
                                     onClick={() => {
                                         setActiveNav(1);
                                         setIsBack(true);
+                                        resetIdle();
                                         const el = navItem1Ref.current;
                                         if (el) {
                                             el.addEventListener(
@@ -186,6 +231,7 @@ function MainPage() {
                                     onClick={() => {
                                         setActiveNav(2);
                                         setIsBack(true);
+                                        resetIdle();
                                         const el = navItem2Ref.current;
                                         if (el) {
                                             el.addEventListener(
@@ -223,6 +269,7 @@ function MainPage() {
                                     onClick={() => {
                                         setActiveNav(3);
                                         setIsBack(true);
+                                        resetIdle();
                                         setHeaderTitle("Major Features");
                                         const el = navItem3Ref.current;
                                         if (el) {
@@ -254,9 +301,15 @@ function MainPage() {
                 )}
                 <VideoComponent isOpen={isOpenVideo} />
                 <OverviewComponent isOpen={isOpenOverview} />
-                <MajorFeaturesComponent isOpen={isOpenFeature} />
+                <MajorFeaturesComponent
+                    isOpen={isOpenFeature}
+                    isOpenDetail={isOpenDetail}
+                    setIsOpenDetail={setIsOpenDetail}
+                    detailProduct={detailProduct}
+                    setDetailProduct={setDetailProduct}
+                />
             </div>
-        </>
+        </IdleContext.Provider>
     );
 }
 

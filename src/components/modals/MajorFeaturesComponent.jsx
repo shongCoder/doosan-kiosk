@@ -10,12 +10,11 @@ import DS035CCD from "/img/features/DS035CCD.png"
 import BottomText from "/img/features/bottom-text.svg"
 import DetailComponent from "./features/DetailComponent";
 import {AnimatePresence} from "framer-motion";
+import {useIdle} from "../../context/IdleContext";
 
-function MajorFeaturesComponent({isOpen}) {
+function MajorFeaturesComponent({isOpen, isOpenDetail, setIsOpenDetail, detailProduct, setDetailProduct}) {
+    const { resetIdle } = useIdle();
     const [toggle, setToggle] = useState(0);
-    const [product, setProduct] = useState("");
-
-    const [isOpenDetail, setIsOpenDetail] = useState(false);
 
     const handleToggle = (page) => {
         setToggle(page);
@@ -29,7 +28,7 @@ function MajorFeaturesComponent({isOpen}) {
 
     return (
         <>
-            <DetailComponent isOpen={isOpenDetail} onClose={() => setIsOpenDetail(false)} product={product} />
+            <DetailComponent isOpen={isOpenDetail} onClose={() => setIsOpenDetail(false)} product={detailProduct} />
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -46,13 +45,19 @@ function MajorFeaturesComponent({isOpen}) {
                             <div className="menu-toggle-box" style={{ fontFamily: "play", fontWeight: 700 }}>
                                 <div
                                     className={`menu-toggle ${toggle === 0 ? "active" : ""}`}
-                                    onClick={() => handleToggle(0)}
+                                    onClick={() => {
+                                        handleToggle(0);
+                                        resetIdle();
+                                    }}
                                 >
                                     <span>Fuel Cell Sysyems</span>
                                 </div>
                                 <div
                                     className={`menu-toggle ${toggle === 1 ? "active" : ""}`}
-                                    onClick={() => handleToggle(1)}
+                                    onClick={() => {
+                                        handleToggle(1);
+                                        resetIdle();
+                                    }}
                                 >
                                     <span>Hydrogen Drones</span>
                                 </div>
@@ -78,7 +83,8 @@ function MajorFeaturesComponent({isOpen}) {
                                                 <button
                                                     onClick={() => {
                                                         setIsOpenDetail(true);
-                                                        setProduct("PEMFC");
+                                                        setDetailProduct("PEMFC");
+                                                        resetIdle();
                                                     }}
                                                 >
                                                     <img src={PEMFC} />
@@ -86,7 +92,8 @@ function MajorFeaturesComponent({isOpen}) {
                                                 <button
                                                     onClick={() => {
                                                         setIsOpenDetail(true);
-                                                        setProduct("SOFC");
+                                                        setDetailProduct("SOFC");
+                                                        resetIdle();
                                                     }}
                                                 >
                                                     <img src={SOFC} />
@@ -104,7 +111,8 @@ function MajorFeaturesComponent({isOpen}) {
                                                 <button
                                                     onClick={() => {
                                                         setIsOpenDetail(true);
-                                                        setProduct("Water Cooling type");
+                                                        setDetailProduct("Water Cooling type");
+                                                        resetIdle();
                                                     }}
                                                 >
                                                     <img src={WaterCooling} />
@@ -112,7 +120,8 @@ function MajorFeaturesComponent({isOpen}) {
                                                 <button
                                                     onClick={() => {
                                                         setIsOpenDetail(true);
-                                                        setProduct("Air Cooling type");
+                                                        setDetailProduct("Air Cooling type");
+                                                        resetIdle();
                                                     }}
                                                 >
                                                     <img src={AirCooling} />
@@ -140,7 +149,7 @@ function MajorFeaturesComponent({isOpen}) {
                                                         className="sec"
                                                         onClick={() => {
                                                             setIsOpenDetail(true);
-                                                            setProduct("DS035CCD");
+                                                            setDetailProduct("DS035CCD");
                                                         }}
                                                     >
                                                         <img src={DS035CCD} />
