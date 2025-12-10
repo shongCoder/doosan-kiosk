@@ -11,7 +11,6 @@
     bottom: 0;
     right: 0;
     z-index: 100;
-    transition: opacity 0.4s ease;
  }
 
 #feature-wrap .overlay {
@@ -53,7 +52,6 @@
     letter-spacing: 0.05em;
     background: transparent;
     border: 1px solid transparent;
-    transition: all 0.35s ease-in-out;
 }
 
 #feature-wrap .menu-toggle-box .menu-toggle.active {
@@ -61,7 +59,6 @@
     linear-gradient(107.56deg, rgba(0, 147, 184, 0.12) 0%, rgba(0, 94, 184, 0.32) 69.71%, rgba(0, 94, 184, 0) 100%);
     border: 1px solid rgba(204, 223, 241, 0.12);
     opacity: 100%;
-    transition: all 0.35s ease-in-out;
 }
 
 #feature-wrap.fade-in {
@@ -78,16 +75,6 @@
     width: 100vw;
     padding: 0 11.25rem;
     box-sizing: border-box;
-}
-
-.contents.fade-in {
-    opacity: 1;
-    transition: opacity 0.35s ease;
-}
-
-.contents.fade-out {
-    opacity: 0;
-    transition: opacity 0.35s ease;
 }
 
 #feature-wrap .contents .title-box {
@@ -196,7 +183,9 @@
     linear-gradient(107.56deg, rgba(0, 147, 184, 0.0192) 0%, rgba(0, 94, 184, 0.0576) 69.71%, rgba(0, 94, 184, 0.0096) 100%);
     box-shadow: -0.5px -0.5px 0 0 #FFFFFF3D inset,
     0.6px 0.6px 1px 0 #FFFFFF1F inset;
-    backdrop-filter: blur(24px)
+    backdrop-filter: blur(24px);
+    will-change: backdrop-filter;
+    transform: translateZ(0);
 }
 
 #feature-wrap .contents .cont-wrap .cont-card button {

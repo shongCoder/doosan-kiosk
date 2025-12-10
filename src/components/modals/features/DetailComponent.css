@@ -5,6 +5,7 @@
     right: 0;
     bottom: 0;
     background: rgb(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,13 +27,12 @@
     border-radius: 1.25rem;
     border: 2px solid rgba(204, 223, 241, 0.12);
     background: rgba(0, 0, 0, 0.88);
-    backdrop-filter: blur(40px)
 }
 
 #detail-wrap .detail-box .detail-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     margin-bottom: 1rem;
 }
 
