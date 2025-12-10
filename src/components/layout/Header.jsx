@@ -4,11 +4,16 @@ import Logo from "/doosan-logo.svg"
 import BackBtn from "/img/header/back-btn.svg"
 import {AnimatePresence, motion} from "framer-motion";
 
-function Header({ title, isBack, onBackClick }) {
+function Header({ title, isBack, onBackClick, isVideo }) {
 
     return (
         <>
-            <div id="header">
+            <div
+                id="header"
+                style={{
+                    borderBottom: isVideo ? "none" : "1px solid rgba(255, 255, 255, 0.08)",
+                }}
+            >
                 {/* 필요할 때만 버튼 노출 */}
                 {isBack ? (
                     <motion.button

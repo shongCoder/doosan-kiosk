@@ -87,7 +87,7 @@ function MainPage() {
     return (
         <IdleContext.Provider value={{ resetIdle }}>
             <div id="wrapper">
-                <Header title={headerTitle} isBack={isBack} onBackClick={() => {
+                <Header title={headerTitle} isBack={isBack} isVideo={isOpenVideo} onBackClick={() => {
                     setIsBack(false);
                     setIsOpenVideo(false);
                     setIsOpenOverview(false);
