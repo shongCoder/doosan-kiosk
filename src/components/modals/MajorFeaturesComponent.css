@@ -184,8 +184,6 @@
     box-shadow: -0.5px -0.5px 0 0 #FFFFFF3D inset,
     0.6px 0.6px 1px 0 #FFFFFF1F inset;
     backdrop-filter: blur(24px);
-    will-change: backdrop-filter;
-    transform: translateZ(0);
 }
 
 #feature-wrap .contents .cont-wrap .cont-card button {

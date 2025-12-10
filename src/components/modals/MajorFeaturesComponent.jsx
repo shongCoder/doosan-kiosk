@@ -17,8 +17,6 @@ function MajorFeaturesComponent({isOpen}) {
 
     const [isOpenDetail, setIsOpenDetail] = useState(false);
 
-    const quickEase = [0.17, 0.67, 0.83, 0.67];
-
     const handleToggle = (page) => {
         setToggle(page);
     }
@@ -62,13 +60,7 @@ function MajorFeaturesComponent({isOpen}) {
                             {/* Toggle Box */}
 
                             {toggle === 0 ? (
-                                <motion.div
-                                    key="contents0"
-                                    className="contents"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.3, ease: quickEase }}
-                                >
+                                <div className="contents">
                                     <div className="title-box">
                                         <div className="sub-title">Major Features</div>
                                         <div className="title">Fuel Cell Sysyems</div>
@@ -128,15 +120,9 @@ function MajorFeaturesComponent({isOpen}) {
                                             </div>
                                         </div>
                                     </div>
-                                </motion.div>
+                                </div>
                             ):(
-                                <motion.div
-                                    key="contents1"
-                                    className="contents sec"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.3, ease: quickEase }}
-                                >
+                                <div className="contents sec">
                                     <div className="title-box">
                                         <div className="sub-title">Major Features</div>
                                         <div className="title">Hydrogen Drones</div>
@@ -163,7 +149,7 @@ function MajorFeaturesComponent({isOpen}) {
                                             </div>
                                         </div>
                                     </div>
-                                </motion.div>
+                                </div>
                             )}
                         </div>
                         <img className="bottom-text" src={BottomText} />
