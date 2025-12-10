@@ -16,9 +16,8 @@ function VideoComponent({isOpen}) {
                     exit={{ opacity: 0 }}
                     transition={{
                         duration: 0.8,
-                        ease: "easeOut"   // Figma Gentle Curve 대응
+                        ease: "easeOut"
                     }}
-                    className="video-motion-wrap"
                 >
                     <video className="video" src={Video} muted autoPlay loop />
                     <div className="overlay"></div>
