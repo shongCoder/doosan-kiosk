@@ -29,11 +29,19 @@ function MainPage() {
     const [isOpenOverview, setIsOpenOverview] = useState(false);
     const [isOpenFeature, setIsOpenFeature] = useState(false);
 
+    /* info-wrap 나타나기 */
     useEffect(() => {
         if (isOpenInfo) {
             setTimeout(() => setStartAnim(true), 10);
         }
     }, [isOpenInfo]);
+
+    /* 뒤로가기 후 info-wrap 나타나기 재실행 */
+    useEffect(() => {
+        if (activeNav === 0) {
+            setTimeout(() => setStartAnim(true), 10);
+        }
+    }, [activeNav]);
 
     return (
         <>
@@ -45,6 +53,9 @@ function MainPage() {
                     setIsOpenFeature(false);
                     setActiveNav(0);
                     setHeaderTitle("");
+
+                    setStartAnim(false);
+                    setLoop(false);
                 }} />
 
                 <video className="prod-vedio" muted autoPlay loop>
@@ -80,42 +91,48 @@ function MainPage() {
                         transition={{
                             duration: 0.8,
                             ease: "easeOut",
-                            onComplete: () => setLoop(true)   // 등장 애니 끝나면 루프 시작
+                            onComplete: () => setLoop(true)   // 등장 애니 끝나면 prod-info 루프 시작
                         }}
                     >
-                        {loop && (
-                            <motion.div
-                                id="prod-info"
-                                animate={{
-                                    opacity: [1, 1, 0, 0, 1],  // 네 단계 흐름
-                                }}
-                                transition={{
-                                    duration: 8.8,
-                                    times: [0, 0.454, 0.59, 0.727, 1],
-                                    ease: "easeInOut",
-                                    repeat: Infinity,
-                                }}
-                            >
-                                <div></div>
-                                <div>
-                                    <div className="title">
-                                        <span>Major Features</span>
-                                        <h1>PEMFC</h1>
-                                    </div>
-                                    <div className="contents">
-                                        <ul>
-                                            <li><span>-</span><span>Operable within minutes</span></li>
-                                            <li><span>-</span><span>Load-following operation</span></li>
-                                            <li><span>-</span><span>24/7 operation, 365 days a year</span></li>
-                                            <li><span>-</span><span>Minimum installation area</span></li>
-                                            <li><span>-</span><span>Minimum construction period</span></li>
-                                            <li><span>-</span><span>On/Off</span></li>
-                                            <li><span>-</span><span>RE100</span></li>
-                                        </ul>
-                                    </div>
+                        <motion.div
+                            id="prod-info"
+                            // step1 & step2: loop 시작 전까지 prod-info 보이도록
+                            style={{ opacity: loop ? 1 : 1 }}
+                            animate={
+                                loop
+                                    ? { opacity: [1, 1, 0, 0, 1] }   // loop 시작되면 루프 애니
+                                    : { opacity: 1 }                // loop 이전에는 항상 보여야 함
+                            }
+                            transition={
+                                loop
+                                    ? {
+                                        duration: 8.8,
+                                        times: [0, 0.454, 0.59, 0.727, 1],
+                                        ease: "easeInOut",
+                                        repeat: Infinity,
+                                    }
+                                    : { duration: 0 }                // loop 이전에는 정지상태
+                            }
+                        >
+                            <div></div>
+                            <div>
+                                <div className="title">
+                                    <span>Major Features</span>
+                                    <h1>PEMFC</h1>
                                 </div>
-                            </motion.div>
-                        )}
+                                <div className="contents">
+                                    <ul>
+                                        <li><span>-</span><span>Operable within minutes</span></li>
+                                        <li><span>-</span><span>Load-following operation</span></li>
+                                        <li><span>-</span><span>24/7 operation, 365 days a year</span></li>
+                                        <li><span>-</span><span>Minimum installation area</span></li>
+                                        <li><span>-</span><span>Minimum construction period</span></li>
+                                        <li><span>-</span><span>On/Off</span></li>
+                                        <li><span>-</span><span>RE100</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </motion.div>
                         {/* Product Information End */}
 
                         <div id="nav" className={`fade-bounce-up ${startAnim ? "show" : ""}`}>
@@ -174,7 +191,7 @@ function MainPage() {
                                                 "transitionend",
                                                 () => {
                                                     setTimeout(() => {
-                                                        setIsOpenVideo(true);
+                                                        setIsOpenOverview(true);
                                                     }, 300);
                                                 },
                                                 { once: true }
@@ -212,7 +229,7 @@ function MainPage() {
                                                 "transitionend",
                                                 () => {
                                                     setTimeout(() => {
-                                                        setIsOpenVideo(true);
+                                                        setIsOpenFeature(true);
                                                     }, 300);
                                                 },
                                                 { once: true }
