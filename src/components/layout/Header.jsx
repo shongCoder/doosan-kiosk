@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Header.css"
 import Logo from "/doosan-logo.svg"
 import BackBtn from "/img/header/back-btn.svg"
-import { motion } from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 
 function Header({ title, isBack, onBackClick }) {
 
@@ -22,17 +22,32 @@ function Header({ title, isBack, onBackClick }) {
                     </motion.button>
                 ) : (<div style={{width: "80px", marginRight: "-4.25rem"}}></div>)}
 
-                {title === "" ?
-                    (<img src={Logo} />) : (
-                        <motion.h2
-                            className="header-title"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 2, duration: 0.4, ease: "easeOut" }}
-                        >
-                            {title}
-                        </motion.h2>
-                    )}
+                <AnimatePresence mode="wait">
+                    {title === "" ?
+                        (   <motion.div
+                                key="logo"
+                                initial={{ opacity: 1 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{
+                                    delay: 1.5,
+                                    duration: 0.4,
+                                    ease: "easeOut"
+                                }}
+                            >
+                                <img src={Logo} />
+                            </motion.div>
+                        ) : (
+                            <motion.h2
+                                className="header-title"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0, duration: 0.4, ease: "easeOut" }}
+                            >
+                                {title}
+                            </motion.h2>
+                        )}
+                </AnimatePresence>
                 <div></div>
             </div>
         </>
