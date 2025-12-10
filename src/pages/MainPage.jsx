@@ -10,6 +10,7 @@ import OverviewComponent from "../components/modals/OverviewComponent";
 import MajorFeaturesComponent from "../components/modals/MajorFeaturesComponent";
 
 function MainPage() {
+    /* 헤더 레이아웃 상태 */
     const [isBack, setIsBack] = useState(false);
     const [headerTitle, setHeaderTitle] = useState("");
 

@@ -1,28 +1,30 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+import {motion} from 'framer-motion';
 import Video from '/video/DMI-video.mp4'
 import './VideoComponent.css'
+import {AnimatePresence} from "framer-motion";
 
 function VideoComponent({isOpen}) {
-    const [visible, setVisible] = useState(isOpen);
-
-    useEffect(() => {
-        if (isOpen) {
-            setVisible(true);
-        } else {
-            const timer = setTimeout(() => setVisible(false), 400);
-            return () => clearTimeout(timer);
-        }
-    }, [isOpen]);
 
     return (
-        <>
-            {visible && (
-                <div id="video-wrap" className={isOpen ? 'fade-in' : 'fade-out'}>
-                    <video className="video" src={Video} muted autoPlay loop/>
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    id="video-wrap"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                        duration: 0.8,
+                        ease: "easeOut"   // Figma Gentle Curve 대응
+                    }}
+                    className="video-motion-wrap"
+                >
+                    <video className="video" src={Video} muted autoPlay loop />
                     <div className="overlay"></div>
-                </div>
+                </motion.div>
             )}
-        </>
+        </AnimatePresence>
     );
 }
 

@@ -55,7 +55,6 @@
     margin-top: 20rem;
     margin-bottom: 7.75rem;
     box-sizing: border-box;
-    /*margin-top: -6rem;*/
 }
 
 #wrapper #prod-info .title {
@@ -120,7 +119,6 @@
 
 /* Navigation Buttons */
 #wrapper #nav {
-    /*position: absolute;*/
     position: relative;
     bottom: 0;
     left: 0;
@@ -157,18 +155,7 @@
             linear-gradient(107.56deg, rgba(0, 147, 184, 0.04) 0%, rgba(0, 94, 184, 0.12) 69.71%, rgba(0, 94, 184, 0) 100%);
     transform: translateY(-1.5rem);
     transition: transform 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    /*transform: translateY(-1.5rem);*/
-    /*transition: transform 0.45s ease;*/
-    /*transition-delay: 0.15s;*/
-    /*animation: preBounce 0.15s ease-out;*/
 }
-
-/*@keyframes preBounce {*/
-/*    0%   { margin-bottom: 0; }*/
-/*    50%  { margin-bottom: -0.5rem; }  !* 아래로 쏙 눌림 *!*/
-/*    100% { margin-bottom: 0; }*/
-/*}*/
-
 
 #wrapper #nav ul li .nav-title {
     height: 7.5rem;
@@ -186,28 +173,3 @@
     align-items: center;
     justify-content: end;
 }
-
-/* 나타나기 애니메이션 */
-/*.fade-bounce-up {*/
-/*    opacity: 0;*/
-/*    transform: translateY(2rem);*/
-/*}*/
-
-/*.fade-bounce-up.show {*/
-/*    animation: bounceUp 0.75s ease forwards;*/
-/*}*/
-
-/*@keyframes bounceUp {*/
-/*    0% {*/
-/*        opacity: 0;*/
-/*        transform: translateY(2rem);*/
-/*    }*/
-/*    60% {*/
-/*        opacity: 1;*/
-/*        transform: translateY(-0.5rem); !* 더 올라감 *!*/
-/*    }*/
-/*    100% {*/
-/*        opacity: 1;*/
-/*        transform: translateY(0); !* 제자리 *!*/
-/*    }*/
-/*}*/

@@ -6,7 +6,6 @@
     top: 0;
     left: 0;
     z-index: 100;
-    transition: opacity 0.4s ease;
 }
 
 #video-wrap .video {
@@ -23,12 +22,4 @@
             linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 40%),
             linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 40%);
     z-index: 2;
-}
-
-#video-wrap.fade-in {
-    opacity: 1;
-}
-
-#video-wrap.fade-out {
-    opacity: 0;
 }
