@@ -13,14 +13,18 @@ function MainPage() {
     const [isBack, setIsBack] = useState(false);
     const [headerTitle, setHeaderTitle] = useState("");
 
+    /* 애니메이션 상태 */
     const [isOpenInfo, setIsOpenInfo] = useState(false);
     const [activeNav, setActiveNav] = useState(0);
-    const [startAnim, setStartAnim] = useState(false); // 애니메이션
+    const [startAnim, setStartAnim] = useState(false);
     const [loop, setLoop] = useState(false);
 
+    /* 네비게이션 상태 */
     const navItem1Ref = useRef(null);
     const navItem2Ref = useRef(null);
     const navItem3Ref = useRef(null);
+
+    /* 팝업 상태 */
     const [isOpenVideo, setIsOpenVideo] = useState(false);
     const [isOpenOverview, setIsOpenOverview] = useState(false);
     const [isOpenFeature, setIsOpenFeature] = useState(false);
@@ -116,9 +120,15 @@ function MainPage() {
 
                         <div id="nav" className={`fade-bounce-up ${startAnim ? "show" : ""}`}>
                             <ul>
-                                <li
+                                <motion.li
                                     ref={navItem1Ref}
                                     className={activeNav === 1 ? "active" : ""}
+                                    initial={{ y: 0 }}
+                                    animate={activeNav === 1 ? { y: -24 } : { y: 0 }}
+                                    transition={{
+                                        duration: 0.5,
+                                        ease: [0.3, -0.28, 0.735, 0.045], // Ease in Back
+                                    }}
                                     onClick={() => {
                                         setActiveNav(1);
                                         setIsBack(true);
@@ -126,11 +136,14 @@ function MainPage() {
                                         if (el) {
                                             el.addEventListener(
                                                 "transitionend",
-                                                () => setIsOpenVideo(true),
+                                                () => {
+                                                    setTimeout(() => {
+                                                        setIsOpenVideo(true);
+                                                    }, 300);
+                                                },
                                                 { once: true }
                                             );
                                         }
-
                                     }}
                                 >
                                     <div className="nav-title">
@@ -141,11 +154,17 @@ function MainPage() {
                                     <div className="nav-btn">
                                         <img src={LinkBtn} alt="move to page" />
                                     </div>
-                                </li>
+                                </motion.li>
 
-                                <li
+                                <motion.li
                                     ref={navItem2Ref}
                                     className={activeNav === 2 ? "active" : ""}
+                                    initial={{ y: 0 }}
+                                    animate={activeNav === 2 ? { y: -24 } : { y: 0 }}
+                                    transition={{
+                                        duration: 0.5,
+                                        ease: [0.3, -0.28, 0.735, 0.045], // Ease in Back
+                                    }}
                                     onClick={() => {
                                         setActiveNav(2);
                                         setIsBack(true);
@@ -153,7 +172,11 @@ function MainPage() {
                                         if (el) {
                                             el.addEventListener(
                                                 "transitionend",
-                                                () => setIsOpenOverview(true),
+                                                () => {
+                                                    setTimeout(() => {
+                                                        setIsOpenVideo(true);
+                                                    }, 300);
+                                                },
                                                 { once: true }
                                             );
                                         }
@@ -168,11 +191,17 @@ function MainPage() {
                                     <div className="nav-btn">
                                         <img src={LinkBtn} alt="move to page" />
                                     </div>
-                                </li>
+                                </motion.li>
 
-                                <li
+                                <motion.li
                                     ref={navItem3Ref}
                                     className={activeNav === 3 ? "active" : ""}
+                                    initial={{ y: 0 }}
+                                    animate={activeNav === 3 ? { y: -24 } : { y: 0 }}
+                                    transition={{
+                                        duration: 0.5,
+                                        ease: [0.3, -0.28, 0.735, 0.045], // Ease in Back
+                                    }}
                                     onClick={() => {
                                         setActiveNav(3);
                                         setIsBack(true);
@@ -181,7 +210,11 @@ function MainPage() {
                                         if (el) {
                                             el.addEventListener(
                                                 "transitionend",
-                                                () => setIsOpenFeature(true),
+                                                () => {
+                                                    setTimeout(() => {
+                                                        setIsOpenVideo(true);
+                                                    }, 300);
+                                                },
                                                 { once: true }
                                             );
                                         }
@@ -195,7 +228,7 @@ function MainPage() {
                                     <div className="nav-btn">
                                         <img src={LinkBtn} alt="move to page" />
                                     </div>
-                                </li>
+                                </motion.li>
                             </ul>
                         </div>
                         {/* Navigation Buttons End */}
