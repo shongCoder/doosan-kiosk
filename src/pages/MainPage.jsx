@@ -11,7 +11,7 @@ import MajorFeaturesComponent from "../components/modals/MajorFeaturesComponent"
 import {IdleContext} from "../context/IdleContext";
 
 function MainPage() {
-    const [idleEnabled, setIdleEnabled] = useState(false);
+    const [idleEnabled, setIdleEnabled] = useState(true);
 
     /* 헤더 레이아웃 상태 */
     const [isBack, setIsBack] = useState(false);
@@ -74,7 +74,7 @@ function MainPage() {
 
         idleTimer.current = setTimeout(() => {
             resetToInitial();
-        }, 5000);
+        }, 300000);
     };
 
     // 컴포넌트 언마운트 시 타이머 정리
